@@ -1,104 +1,216 @@
-/* =========================
-   FLOATING PARTICLES
-========================= */
+/* =========================================
+   CINEMATIC BIRTHDAY ANIMATION
+========================================= */
 
-const particles = document.getElementById("particles");
 
-for (let i = 0; i < 70; i++) {
+/* =========================================
+   PARTICLES
+========================================= */
 
-    const particle = document.createElement("div");
+const particles =
+    document.getElementById("particles");
 
-    particle.className = "particle";
 
-    particle.style.left = Math.random() * 100 + "%";
+for (let i = 0; i < 90; i++) {
 
-    particle.style.animationDuration =
+    const p =
+        document.createElement("div");
+
+    p.className = "particle";
+
+    p.style.left =
+        Math.random() * 100 + "vw";
+
+    p.style.animationDuration =
         (5 + Math.random() * 10) + "s";
 
-    particle.style.animationDelay =
-        Math.random() * 8 + "s";
+    p.style.animationDelay =
+        Math.random() * 10 + "s";
 
-    particle.style.width =
-        (2 + Math.random() * 4) + "px";
+    const size =
+        2 + Math.random() * 4;
 
-    particle.style.height =
-        particle.style.width;
+    p.style.width =
+        size + "px";
 
-    particles.appendChild(particle);
+    p.style.height =
+        size + "px";
+
+    particles.appendChild(p);
 }
 
 
-/* =========================
+/* =========================================
    CONFETTI
-========================= */
+========================================= */
 
-const confettiBox = document.getElementById("confetti");
+const confetti =
+    document.getElementById("confetti");
+
 
 function createConfetti() {
 
-    const confetti = document.createElement("div");
+    const c =
+        document.createElement("div");
 
-    confetti.className = "confetti";
+    c.className = "confetti";
 
-    confetti.style.left =
+
+    c.style.left =
         Math.random() * 100 + "vw";
 
-    confetti.style.width =
+
+    c.style.background =
+        `hsl(
+            ${Math.random() * 360},
+            100%,
+            65%
+        )`;
+
+
+    c.style.width =
         (5 + Math.random() * 7) + "px";
 
-    confetti.style.height =
-        (8 + Math.random() * 12) + "px";
 
-    confetti.style.background =
-        `hsl(${Math.random() * 360}, 100%, 65%)`;
+    c.style.height =
+        (8 + Math.random() * 14) + "px";
 
-    confetti.style.animationDuration =
+
+    c.style.animationDuration =
         (3 + Math.random() * 4) + "s";
 
-    confetti.style.transform =
-        `rotate(${Math.random() * 360}deg)`;
 
-    confettiBox.appendChild(confetti);
+    c.style.transform =
+        `rotate(
+            ${Math.random() * 360}deg
+        )`;
+
+
+    confetti.appendChild(c);
+
 
     setTimeout(() => {
-        confetti.remove();
+
+        c.remove();
+
     }, 8000);
 }
 
 
-/* First celebration */
+/* =========================================
+   BIG OPENING CELEBRATION
+========================================= */
 
-for (let i = 0; i < 70; i++) {
+setTimeout(() => {
 
-    setTimeout(() => {
-        createConfetti();
-    }, i * 45);
-}
+    for (let i = 0; i < 100; i++) {
+
+        setTimeout(() => {
+
+            createConfetti();
+
+        }, i * 35);
+    }
+
+}, 3500);
 
 
-/* Continuous celebration */
+/* =========================================
+   CONTINUOUS CONFETTI
+========================================= */
 
 setInterval(() => {
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
+
         createConfetti();
+
     }
 
-}, 700);
+}, 900);
 
 
-/* =========================
-   CLICK CELEBRATION
-========================= */
+/* =========================================
+   CLICK / TOUCH CELEBRATION
+========================================= */
 
-document.addEventListener("click", () => {
+function celebration() {
 
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < 35; i++) {
 
         setTimeout(() => {
+
             createConfetti();
+
         }, i * 20);
 
     }
+}
 
-});
+
+document.addEventListener(
+    "click",
+    celebration
+);
+
+
+document.addEventListener(
+    "touchstart",
+    celebration
+);
+
+
+/* =========================================
+   PHOTO EXTRA EFFECT
+========================================= */
+
+const photo =
+    document.querySelector(".photo-frame");
+
+
+if (photo) {
+
+    document.addEventListener(
+        "mousemove",
+        (event) => {
+
+            const x =
+                (window.innerWidth / 2 -
+                event.clientX) / 35;
+
+            const y =
+                (window.innerHeight / 2 -
+                event.clientY) / 35;
+
+
+            photo.style.transform =
+                `translateY(0)
+                 rotateY(${x}deg)
+                 rotateX(${y}deg)`;
+        }
+    );
+
+
+    document.addEventListener(
+        "mouseleave",
+        () => {
+
+            photo.style.transform =
+                "translateY(0) rotateY(0) rotateX(0)";
+        }
+    );
+}
+
+
+/* =========================================
+   REPLAY INTRO WHEN PAGE LOADS
+========================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        window.scrollTo(0, 0);
+
+    }
+);
