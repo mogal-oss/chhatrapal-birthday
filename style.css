@@ -7,215 +7,275 @@
 html,
 body {
     width: 100%;
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
+    min-height: 100vh;
+    font-family: "Noto Sans Gujarati", "Arial", sans-serif;
     overflow-x: hidden;
-    overflow-y: auto;
-
-    font-family:
-        "Noto Sans Gujarati",
-        "Nirmala UI",
-        Arial,
-        sans-serif;
+    color: white;
 
     background:
-        radial-gradient(
-            circle at 50% 20%,
-            #5d2600,
-            #170800 45%,
-            #050505 100%
-        );
+        radial-gradient(circle at top, #273b80 0%, #101a45 35%, #050817 75%, #02030b 100%);
 
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
 }
 
-/* Main Card */
+/* ---------------- BACKGROUND ---------------- */
 
-.birthday-card {
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.background span {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: rgba(0, 238, 255, 0.15);
+    box-shadow:
+        0 0 20px rgba(0, 238, 255, 0.4),
+        0 0 50px rgba(0, 238, 255, 0.2);
+
+    animation: float 8s infinite ease-in-out;
+}
+
+.background span:nth-child(1) {
+    width: 120px;
+    height: 120px;
+    left: 5%;
+    top: 10%;
+}
+
+.background span:nth-child(2) {
+    width: 70px;
+    height: 70px;
+    right: 10%;
+    top: 20%;
+    animation-delay: 1s;
+}
+
+.background span:nth-child(3) {
+    width: 180px;
+    height: 180px;
+    left: 15%;
+    bottom: 5%;
+    animation-delay: 2s;
+}
+
+.background span:nth-child(4) {
+    width: 90px;
+    height: 90px;
+    right: 15%;
+    bottom: 10%;
+    animation-delay: 3s;
+}
+
+.background span:nth-child(5) {
+    width: 50px;
+    height: 50px;
+    left: 45%;
+    top: 5%;
+    animation-delay: 1.5s;
+}
+
+.background span:nth-child(6) {
+    width: 100px;
+    height: 100px;
+    right: 40%;
+    bottom: 5%;
+    animation-delay: 2.5s;
+}
+
+.background span:nth-child(7) {
+    width: 60px;
+    height: 60px;
+    left: 30%;
+    top: 45%;
+    animation-delay: 4s;
+}
+
+.background span:nth-child(8) {
+    width: 130px;
+    height: 130px;
+    right: 5%;
+    top: 55%;
+    animation-delay: 3.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(-35px) scale(1.15);
+    }
+}
+
+/* ---------------- CARD ---------------- */
+
+.card {
+    width: min(680px, 100%);
     position: relative;
 
-    width: min(100%, 900px);
-    min-height: 100vh;
-
-    margin: auto;
-
-    padding:
-        50px
-        25px
-        40px;
+    padding: 45px 25px 35px;
 
     text-align: center;
 
+    background:
+        linear-gradient(
+            145deg,
+            rgba(23, 39, 94, 0.94),
+            rgba(5, 10, 35, 0.97)
+        );
+
+    border: 2px solid rgba(0, 229, 255, 0.65);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 0 25px rgba(0, 229, 255, 0.25),
+        0 0 80px rgba(0, 100, 255, 0.15),
+        inset 0 0 35px rgba(0, 229, 255, 0.05);
+
     overflow: hidden;
+
+    animation: cardIn 1.2s ease forwards;
 }
 
-/* Golden Glow */
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: scale(0.75) translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
 
 .top-glow {
     position: absolute;
+    width: 300px;
+    height: 100px;
 
-    top: -200px;
     left: 50%;
-
-    width: 600px;
-    height: 400px;
+    top: -50px;
 
     transform: translateX(-50%);
 
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 190, 50, 0.35),
-            transparent 70%
-        );
+    background: #00eaff;
 
-    pointer-events: none;
+    filter: blur(70px);
+
+    opacity: 0.5;
 }
 
-/* Small Title */
+/* ---------------- TITLE ---------------- */
 
 .small-title {
-    position: relative;
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #65f5ff;
+    margin-bottom: 15px;
 
-    color: #ffd76a;
-
-    font-size: 18px;
-
-    letter-spacing: 3px;
-
-    opacity: 0;
-
-    animation:
-        fadeDown 1s ease forwards;
+    animation: glowText 2s infinite alternate;
 }
 
-/* Main Heading */
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 5px #00eaff;
+    }
+
+    to {
+        text-shadow:
+            0 0 10px #00eaff,
+            0 0 25px #00eaff;
+    }
+}
 
 h1 {
-    position: relative;
-
-    margin-top: 15px;
-
-    font-size:
-        clamp(30px, 6vw, 60px);
-
-    line-height: 1.3;
-
-    font-weight: 800;
-
-    color: #fff;
+    font-size: clamp(30px, 7vw, 55px);
+    line-height: 1.2;
+    margin-bottom: 25px;
 
     text-shadow:
-        0 0 10px rgba(255, 220, 100, 0.5),
-        0 0 30px rgba(255, 170, 0, 0.3);
-
-    opacity: 0;
-
-    animation:
-        titleReveal 1.2s
-        0.4s
-        ease forwards;
+        0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 h1 span {
     display: block;
 
-    background:
-        linear-gradient(
-            90deg,
-            #fff0a8,
-            #ffd43b,
-            #fff0a8,
-            #ffd43b
-        );
+    margin-top: 8px;
 
-    background-size: 300% auto;
+    background: linear-gradient(
+        90deg,
+        #00eaff,
+        #ffffff,
+        #00eaff
+    );
+
+    background-size: 200% auto;
 
     -webkit-background-clip: text;
     background-clip: text;
 
     color: transparent;
 
-    animation:
-        goldMove 4s linear infinite;
+    animation: shine 3s linear infinite;
 }
 
-/* Photo */
-
-.photo-area {
-    position: relative;
-
-    width: 300px;
-    height: 300px;
-
-    margin:
-        35px
-        auto
-        25px;
-
-    opacity: 0;
-
-    animation:
-        photoReveal 1.2s
-        0.9s
-        ease forwards;
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
 }
 
-/* Glow behind photo */
+/* ---------------- PHOTO ---------------- */
 
-.photo-glow {
-    position: absolute;
+.photo-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    inset: -25px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(255, 193, 7, 0.5),
-            transparent 65%
-        );
-
-    filter: blur(12px);
-
-    animation:
-        pulseGlow 2s ease-in-out infinite;
+    margin: 20px auto 25px;
 }
 
-/* Photo Frame */
+.photo-ring {
+    width: 250px;
+    height: 250px;
 
-.photo-frame {
-    position: relative;
-
-    width: 100%;
-    height: 100%;
-
-    padding: 7px;
+    padding: 8px;
 
     border-radius: 50%;
 
     background:
         linear-gradient(
             135deg,
-            #fff3a0,
-            #ffbd00,
-            #fff4ae,
-            #c47a00,
-            #ffe47a
+            #00eaff,
+            #ffffff,
+            #00eaff,
+            #4267ff
         );
 
     box-shadow:
-        0 0 20px rgba(255, 196, 0, 0.7),
-        0 0 60px rgba(255, 150, 0, 0.35);
+        0 0 20px #00eaff,
+        0 0 50px rgba(0, 234, 255, 0.55);
 
     animation:
-        frameRotate 8s linear infinite;
+        photoGlow 2.5s infinite alternate,
+        photoFloat 4s ease-in-out infinite;
 }
 
-.photo-frame img {
+.photo-ring img {
     width: 100%;
     height: 100%;
 
@@ -223,497 +283,222 @@ h1 span {
 
     object-fit: cover;
 
-    object-position: center 25%;
+    object-position: center;
 
     border-radius: 50%;
 
-    border: 5px solid #180900;
+    border: 5px solid #08102d;
 
-    animation:
-        imageScale 5s ease-in-out infinite;
+    background: #111a38;
 }
 
-/* Name */
+@keyframes photoGlow {
+    from {
+        box-shadow:
+            0 0 15px #00eaff,
+            0 0 30px rgba(0, 234, 255, 0.3);
+    }
 
-.name-area {
-    position: relative;
-
-    margin-top: 15px;
-
-    opacity: 0;
-
-    animation:
-        fadeUp 1s
-        1.4s
-        ease forwards;
+    to {
+        box-shadow:
+            0 0 25px #00eaff,
+            0 0 70px rgba(0, 234, 255, 0.65);
+    }
 }
 
-.name-area h2 {
-    margin: 15px 0;
+@keyframes photoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
 
-    font-size:
-        clamp(25px, 5vw, 43px);
+    50% {
+        transform: translateY(-10px);
+    }
+}
 
-    line-height: 1.4;
+/* ---------------- NAME ---------------- */
 
-    color: #ffe58a;
+h2 {
+    font-size: clamp(24px, 5vw, 38px);
+    line-height: 1.5;
+
+    margin-bottom: 8px;
+
+    color: white;
 
     text-shadow:
-        0 0 8px #ffb300,
-        0 0 25px rgba(255, 170, 0, 0.5);
+        0 0 12px rgba(0, 234, 255, 0.5);
 }
 
-.name-line {
-    width: 180px;
-    height: 2px;
-
-    margin: auto;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #ffd43b,
-            transparent
-        );
+h2 strong {
+    color: #00eaff;
 }
 
-/* Message */
-
-.message {
-    margin-top: 20px;
-
-    color: #f8e7c0;
-
-    font-size:
-        clamp(16px, 3vw, 21px);
-
-    line-height: 1.9;
-
-    opacity: 0;
-
-    animation:
-        fadeUp 1s
-        1.8s
-        ease forwards;
-}
-
-/* Cake */
+/* ---------------- CAKE ---------------- */
 
 .cake {
-    position: relative;
+    font-size: 55px;
 
-    width: 130px;
-    height: 110px;
-
-    margin:
-        35px
-        auto
-        20px;
-
-    opacity: 0;
+    margin: 8px 0;
 
     animation:
-        cakeReveal 1s
-        2.2s
-        ease forwards;
+        cakeBounce 1.4s infinite,
+        cakeGlow 2s infinite alternate;
 }
 
-.cake-body {
-    position: absolute;
+@keyframes cakeBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
 
-    bottom: 0;
-    left: 5px;
-
-    width: 120px;
-    height: 65px;
-
-    border-radius:
-        10px
-        10px
-        20px
-        20px;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #ff4f81,
-            #d81b60
-        );
-
-    border: 3px solid #ff9ab8;
-
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.5);
+    50% {
+        transform: translateY(-12px);
+    }
 }
 
-.cake-body span {
-    position: absolute;
+@keyframes cakeGlow {
+    from {
+        filter: drop-shadow(0 0 3px #fff);
+    }
 
-    top: 16px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    font-size: 30px;
+    to {
+        filter: drop-shadow(0 0 18px #00eaff);
+    }
 }
 
-.cake-top {
-    position: absolute;
+/* ---------------- WISH ---------------- */
 
-    left: 5px;
-    bottom: 55px;
+.wish {
+    font-size: clamp(17px, 4vw, 22px);
+    line-height: 1.8;
 
-    width: 120px;
-    height: 20px;
+    margin-top: 10px;
 
-    border-radius: 50%;
-
-    background: #fff0f5;
-
-    border: 3px solid #ff9ab8;
+    color: #ffffff;
 }
 
-.candle {
-    position: absolute;
+.wish2 {
+    font-size: 16px;
+    line-height: 1.7;
 
-    left: 50%;
-    bottom: 75px;
+    margin-top: 8px;
 
-    width: 10px;
-    height: 30px;
-
-    transform: translateX(-50%);
-
-    background:
-        repeating-linear-gradient(
-            45deg,
-            #fff,
-            #fff 5px,
-            #ff4f81 5px,
-            #ff4f81 10px
-        );
-
-    border-radius: 3px;
+    color: #b9eaff;
 }
 
-.flame {
-    position: absolute;
+/* ---------------- HAPPY BIRTHDAY ---------------- */
 
-    left: 50%;
-    bottom: 103px;
+.birthday-text {
+    margin-top: 25px;
 
-    width: 17px;
-    height: 24px;
+    font-family: Arial, sans-serif;
 
-    transform:
-        translateX(-50%)
-        rotate(45deg);
+    font-size: clamp(25px, 7vw, 48px);
 
-    background:
-        linear-gradient(
-            135deg,
-            #fff,
-            #ffd000,
-            #ff6600
-        );
+    font-weight: 900;
 
-    border-radius:
-        50%
-        50%
-        50%
-        0;
+    letter-spacing: 5px;
 
-    box-shadow:
-        0 0 15px #ffb300,
-        0 0 35px #ff6500;
+    color: #ffffff;
+
+    text-shadow:
+        0 0 8px #00eaff,
+        0 0 20px #00eaff,
+        0 0 40px #006eff;
 
     animation:
-        flame 0.5s
-        ease-in-out
-        infinite alternate;
+        birthdayPulse 1.5s infinite alternate;
 }
 
-/* Bottom */
+@keyframes birthdayPulse {
+    from {
+        transform: scale(1);
+    }
 
-.bottom-text {
-    color: #ffd75a;
+    to {
+        transform: scale(1.07);
+    }
+}
 
-    font-size: 20px;
+/* ---------------- HEARTS ---------------- */
+
+.hearts {
+    margin: 15px 0;
+
+    font-size: 23px;
+    letter-spacing: 8px;
+
+    animation: heartFloat 2s infinite ease-in-out;
+}
+
+@keyframes heartFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+/* ---------------- BUTTON ---------------- */
+
+button {
+    border: none;
+
+    padding: 14px 25px;
+
+    margin-top: 10px;
+
+    border-radius: 50px;
+
+    color: #031027;
+
+    background: #00eaff;
+
+    font-size: 16px;
 
     font-weight: bold;
 
-    letter-spacing: 2px;
-
-    opacity: 0;
-
-    animation:
-        fadeUp 1s
-        2.5s
-        ease forwards;
-}
-
-/* Particles */
-
-#particles,
-#confetti {
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    overflow: hidden;
-
-    z-index: 20;
-}
-
-.particle {
-    position: absolute;
-
-    width: 4px;
-    height: 4px;
-
-    border-radius: 50%;
-
-    background: #ffd700;
+    cursor: pointer;
 
     box-shadow:
-        0 0 10px #ffd700;
+        0 0 15px rgba(0, 234, 255, 0.7);
 
-    animation:
-        particleMove
-        linear
-        infinite;
+    transition: 0.3s;
 }
 
-.confetti-piece {
-    position: absolute;
+button:hover {
+    transform: scale(1.07);
 
-    width: 8px;
-    height: 14px;
-
-    background: #ffd700;
-
-    animation:
-        confettiFall
-        linear
-        infinite;
+    box-shadow:
+        0 0 25px #00eaff,
+        0 0 50px rgba(0, 234, 255, 0.4);
 }
 
-/* Animations */
-
-@keyframes fadeDown {
-
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+button:active {
+    transform: scale(0.95);
 }
 
-@keyframes titleReveal {
+/* ---------------- CONFETTI ---------------- */
 
-    from {
-        opacity: 0;
-        transform:
-            scale(0.7)
-            translateY(-20px);
-    }
+.confetti {
+    position: fixed;
 
-    to {
-        opacity: 1;
-        transform:
-            scale(1)
-            translateY(0);
-    }
+    width: 10px;
+    height: 18px;
+
+    top: -30px;
+
+    z-index: 100;
+
+    animation: fall linear forwards;
+
+    pointer-events: none;
 }
 
-@keyframes goldMove {
-
+@keyframes fall {
     0% {
-        background-position: 0% center;
-    }
-
-    100% {
-        background-position: 300% center;
-    }
-}
-
-@keyframes photoReveal {
-
-    from {
-        opacity: 0;
         transform:
-            scale(0.3)
-            rotate(-20deg);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            scale(1)
-            rotate(0);
-    }
-}
-
-@keyframes photoScale {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.03);
-    }
-}
-
-@keyframes imageScale {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.025);
-    }
-}
-
-@keyframes pulseGlow {
-
-    0%,
-    100% {
-        transform: scale(0.95);
-        opacity: 0.5;
-    }
-
-    50% {
-        transform: scale(1.1);
-        opacity: 1;
-    }
-}
-
-@keyframes frameRotate {
-
-    0% {
-        filter:
-            brightness(1);
-    }
-
-    50% {
-        filter:
-            brightness(1.3);
-    }
-
-    100% {
-        filter:
-            brightness(1);
-    }
-}
-
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes cakeReveal {
-
-    from {
-        opacity: 0;
-        transform:
-            scale(0)
-            translateY(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            scale(1)
-            translateY(0);
-    }
-}
-
-@keyframes flame {
-
-    from {
-        transform:
-            translateX(-50%)
-            rotate(40deg)
-            scale(0.9);
-    }
-
-    to {
-        transform:
-            translateX(-50%)
-            rotate(50deg)
-            scale(1.1);
-    }
-}
-
-@keyframes particleMove {
-
-    from {
-        transform:
-            translateY(100vh)
-            scale(0);
-    }
-
-    to {
-        transform:
-            translateY(-20vh)
-            scale(1);
-    }
-}
-
-@keyframes confettiFall {
-
-    from {
-        transform:
-            translateY(-20vh)
+            translateY(-30px)
             rotate(0deg);
-    }
-
-    to {
-        transform:
-            translateY(120vh)
-            rotate(720deg);
-    }
-}
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .birthday-card {
-        padding-top: 35px;
-    }
-
-    .photo-area {
-        width: 250px;
-        height: 250px;
-
-        margin-top: 30px;
-    }
-
-    .message {
-        padding: 0 10px;
-    }
-
-    .name-area h2 {
-        font-size: 28px;
-    }
-}
