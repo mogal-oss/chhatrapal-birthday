@@ -2,66 +2,132 @@
 <html lang="gu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Happy Birthday Chhatrapalbhai</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- Background -->
-    <div class="background"></div>
+    <!-- CINEMATIC INTRO -->
+    <div id="intro">
 
-    <!-- Stars / particles -->
+        <div class="intro-glow"></div>
+
+        <div class="intro-line"></div>
+
+        <div class="intro-text">
+            ✨ A SPECIAL DAY ✨
+        </div>
+
+    </div>
+
+
+    <!-- BACKGROUND -->
+    <div class="background">
+
+        <div class="light light1"></div>
+        <div class="light light2"></div>
+        <div class="light light3"></div>
+
+    </div>
+
+
+    <!-- PARTICLES -->
     <div id="particles"></div>
 
-    <!-- Confetti -->
+
+    <!-- CONFETTI -->
     <div id="confetti"></div>
 
-    <!-- Main -->
-    <main class="birthday-card">
 
-        <div class="top-badge">
-            ✨ SPECIAL DAY ✨
-        </div>
+    <!-- MAIN CINEMATIC CARD -->
 
-        <div class="small-title">
-            જન્મદિવસની હાર્દિક શુભેચ્છાઓ
-        </div>
+    <main class="birthday">
 
-        <!-- Photo -->
-        <div class="photo-area">
+        <!-- TOP -->
+        <div class="top">
 
-            <div class="photo-glow"></div>
+            <div class="mini-title">
+                ✨ SPECIAL BIRTHDAY ✨
+            </div>
 
-            <div class="photo-frame">
-                <img src="chhatrapal.jpg" alt="છત્રપાલભાઈ શિવરાજભાઈ ખાચર">
+            <div class="gujarati-title">
+                જન્મદિવસની
+                <span>હાર્દિક શુભેચ્છાઓ</span>
             </div>
 
         </div>
 
-        <!-- Name -->
-        <div class="name-area">
 
-            <div class="wish-text">
-                🎂 Happy Birthday 🎂
+        <!-- PHOTO SECTION -->
+
+        <section class="photo-section">
+
+            <!-- Rotating rings -->
+
+            <div class="ring ring1"></div>
+            <div class="ring ring2"></div>
+            <div class="ring ring3"></div>
+
+
+            <!-- Sparkles -->
+
+            <div class="sparkle s1">✦</div>
+            <div class="sparkle s2">✦</div>
+            <div class="sparkle s3">✦</div>
+            <div class="sparkle s4">✦</div>
+
+
+            <!-- Photo -->
+
+            <div class="photo-wrapper">
+
+                <div class="photo-light"></div>
+
+                <div class="photo-frame">
+
+                    <img
+                        src="chhatrapal.jpg"
+                        alt="છત્રપાલભાઈ શિવરાજભાઈ ખાચર"
+                    >
+
+                    <div class="shine"></div>
+
+                </div>
+
             </div>
+
+        </section>
+
+
+        <!-- NAME -->
+
+        <section class="name-section">
+
+            <div class="happy">
+                🎂 HAPPY BIRTHDAY 🎂
+            </div>
+
 
             <h1>
-                છત્રપાલભાઈ<br>
-                <span>શિવરાજભાઈ ખાચર</span>
+                છત્રપાલભાઈ
             </h1>
 
-        </div>
+            <h2>
+                શિવરાજભાઈ ખાચર
+            </h2>
 
-        <!-- Message -->
-        <div class="message">
+        </section>
+
+
+        <!-- MESSAGE -->
+
+        <section class="message">
 
             <p>
                 આપનું જીવન હંમેશા ખુશીઓથી ભરેલું રહે,
@@ -69,28 +135,44 @@
                 સફળતાના નવા શિખરો સર કરો.
             </p>
 
-            <strong>
-                જન્મદિવસની ખૂબ ખૂબ શુભેચ્છાઓ! ❤️
-            </strong>
-
-        </div>
-
-        <!-- Cake -->
-        <div class="cake">
-            <div class="candle">
-                <div class="flame"></div>
+            <div class="wish">
+                ❤️ જન્મદિવસની ખૂબ ખૂબ શુભેચ્છાઓ ❤️
             </div>
 
-            <div class="cake-top"></div>
-            <div class="cake-body"></div>
-            <div class="cake-bottom"></div>
+        </section>
+
+
+        <!-- CAKE -->
+
+        <div class="cake-area">
+
+            <div class="cake">
+
+                <div class="flame"></div>
+
+                <div class="candle"></div>
+
+                <div class="cake-top"></div>
+
+                <div class="cake-body">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="bottom-text">
-            💫 Have a Wonderful Birthday 💫
+
+        <div class="bottom">
+            ✨ Have A Wonderful Birthday ✨
         </div>
 
     </main>
+
 
     <script src="script.js"></script>
 
