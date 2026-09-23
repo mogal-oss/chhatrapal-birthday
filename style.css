@@ -1,0 +1,719 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    font-family:
+        "Noto Sans Gujarati",
+        "Nirmala UI",
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #5d2600,
+            #170800 45%,
+            #050505 100%
+        );
+
+    color: white;
+}
+
+/* Main Card */
+
+.birthday-card {
+    position: relative;
+
+    width: min(100%, 900px);
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding:
+        50px
+        25px
+        40px;
+
+    text-align: center;
+
+    overflow: hidden;
+}
+
+/* Golden Glow */
+
+.top-glow {
+    position: absolute;
+
+    top: -200px;
+    left: 50%;
+
+    width: 600px;
+    height: 400px;
+
+    transform: translateX(-50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 190, 50, 0.35),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+/* Small Title */
+
+.small-title {
+    position: relative;
+
+    color: #ffd76a;
+
+    font-size: 18px;
+
+    letter-spacing: 3px;
+
+    opacity: 0;
+
+    animation:
+        fadeDown 1s ease forwards;
+}
+
+/* Main Heading */
+
+h1 {
+    position: relative;
+
+    margin-top: 15px;
+
+    font-size:
+        clamp(30px, 6vw, 60px);
+
+    line-height: 1.3;
+
+    font-weight: 800;
+
+    color: #fff;
+
+    text-shadow:
+        0 0 10px rgba(255, 220, 100, 0.5),
+        0 0 30px rgba(255, 170, 0, 0.3);
+
+    opacity: 0;
+
+    animation:
+        titleReveal 1.2s
+        0.4s
+        ease forwards;
+}
+
+h1 span {
+    display: block;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fff0a8,
+            #ffd43b,
+            #fff0a8,
+            #ffd43b
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+
+    animation:
+        goldMove 4s linear infinite;
+}
+
+/* Photo */
+
+.photo-area {
+    position: relative;
+
+    width: 300px;
+    height: 300px;
+
+    margin:
+        35px
+        auto
+        25px;
+
+    opacity: 0;
+
+    animation:
+        photoReveal 1.2s
+        0.9s
+        ease forwards;
+}
+
+/* Glow behind photo */
+
+.photo-glow {
+    position: absolute;
+
+    inset: -25px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 193, 7, 0.5),
+            transparent 65%
+        );
+
+    filter: blur(12px);
+
+    animation:
+        pulseGlow 2s ease-in-out infinite;
+}
+
+/* Photo Frame */
+
+.photo-frame {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 7px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff3a0,
+            #ffbd00,
+            #fff4ae,
+            #c47a00,
+            #ffe47a
+        );
+
+    box-shadow:
+        0 0 20px rgba(255, 196, 0, 0.7),
+        0 0 60px rgba(255, 150, 0, 0.35);
+
+    animation:
+        frameRotate 8s linear infinite;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    object-position: center 25%;
+
+    border-radius: 50%;
+
+    border: 5px solid #180900;
+
+    animation:
+        imageScale 5s ease-in-out infinite;
+}
+
+/* Name */
+
+.name-area {
+    position: relative;
+
+    margin-top: 15px;
+
+    opacity: 0;
+
+    animation:
+        fadeUp 1s
+        1.4s
+        ease forwards;
+}
+
+.name-area h2 {
+    margin: 15px 0;
+
+    font-size:
+        clamp(25px, 5vw, 43px);
+
+    line-height: 1.4;
+
+    color: #ffe58a;
+
+    text-shadow:
+        0 0 8px #ffb300,
+        0 0 25px rgba(255, 170, 0, 0.5);
+}
+
+.name-line {
+    width: 180px;
+    height: 2px;
+
+    margin: auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffd43b,
+            transparent
+        );
+}
+
+/* Message */
+
+.message {
+    margin-top: 20px;
+
+    color: #f8e7c0;
+
+    font-size:
+        clamp(16px, 3vw, 21px);
+
+    line-height: 1.9;
+
+    opacity: 0;
+
+    animation:
+        fadeUp 1s
+        1.8s
+        ease forwards;
+}
+
+/* Cake */
+
+.cake {
+    position: relative;
+
+    width: 130px;
+    height: 110px;
+
+    margin:
+        35px
+        auto
+        20px;
+
+    opacity: 0;
+
+    animation:
+        cakeReveal 1s
+        2.2s
+        ease forwards;
+}
+
+.cake-body {
+    position: absolute;
+
+    bottom: 0;
+    left: 5px;
+
+    width: 120px;
+    height: 65px;
+
+    border-radius:
+        10px
+        10px
+        20px
+        20px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #ff4f81,
+            #d81b60
+        );
+
+    border: 3px solid #ff9ab8;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.cake-body span {
+    position: absolute;
+
+    top: 16px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 30px;
+}
+
+.cake-top {
+    position: absolute;
+
+    left: 5px;
+    bottom: 55px;
+
+    width: 120px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #fff0f5;
+
+    border: 3px solid #ff9ab8;
+}
+
+.candle {
+    position: absolute;
+
+    left: 50%;
+    bottom: 75px;
+
+    width: 10px;
+    height: 30px;
+
+    transform: translateX(-50%);
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #fff,
+            #fff 5px,
+            #ff4f81 5px,
+            #ff4f81 10px
+        );
+
+    border-radius: 3px;
+}
+
+.flame {
+    position: absolute;
+
+    left: 50%;
+    bottom: 103px;
+
+    width: 17px;
+    height: 24px;
+
+    transform:
+        translateX(-50%)
+        rotate(45deg);
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff,
+            #ffd000,
+            #ff6600
+        );
+
+    border-radius:
+        50%
+        50%
+        50%
+        0;
+
+    box-shadow:
+        0 0 15px #ffb300,
+        0 0 35px #ff6500;
+
+    animation:
+        flame 0.5s
+        ease-in-out
+        infinite alternate;
+}
+
+/* Bottom */
+
+.bottom-text {
+    color: #ffd75a;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    opacity: 0;
+
+    animation:
+        fadeUp 1s
+        2.5s
+        ease forwards;
+}
+
+/* Particles */
+
+#particles,
+#confetti {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 20;
+}
+
+.particle {
+    position: absolute;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background: #ffd700;
+
+    box-shadow:
+        0 0 10px #ffd700;
+
+    animation:
+        particleMove
+        linear
+        infinite;
+}
+
+.confetti-piece {
+    position: absolute;
+
+    width: 8px;
+    height: 14px;
+
+    background: #ffd700;
+
+    animation:
+        confettiFall
+        linear
+        infinite;
+}
+
+/* Animations */
+
+@keyframes fadeDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes titleReveal {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.7)
+            translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+@keyframes goldMove {
+
+    0% {
+        background-position: 0% center;
+    }
+
+    100% {
+        background-position: 300% center;
+    }
+}
+
+@keyframes photoReveal {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.3)
+            rotate(-20deg);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+@keyframes photoScale {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}
+
+@keyframes imageScale {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.025);
+    }
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+@keyframes frameRotate {
+
+    0% {
+        filter:
+            brightness(1);
+    }
+
+    50% {
+        filter:
+            brightness(1.3);
+    }
+
+    100% {
+        filter:
+            brightness(1);
+    }
+}
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cakeReveal {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0)
+            translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+@keyframes flame {
+
+    from {
+        transform:
+            translateX(-50%)
+            rotate(40deg)
+            scale(0.9);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            rotate(50deg)
+            scale(1.1);
+    }
+}
+
+@keyframes particleMove {
+
+    from {
+        transform:
+            translateY(100vh)
+            scale(0);
+    }
+
+    to {
+        transform:
+            translateY(-20vh)
+            scale(1);
+    }
+}
+
+@keyframes confettiFall {
+
+    from {
+        transform:
+            translateY(-20vh)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateY(120vh)
+            rotate(720deg);
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .birthday-card {
+        padding-top: 35px;
+    }
+
+    .photo-area {
+        width: 250px;
+        height: 250px;
+
+        margin-top: 30px;
+    }
+
+    .message {
+        padding: 0 10px;
+    }
+
+    .name-area h2 {
+        font-size: 28px;
+    }
+}
